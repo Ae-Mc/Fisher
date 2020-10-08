@@ -2,12 +2,17 @@ from decimal import Decimal
 
 
 def Binominal(n: int, k: int) -> int:
+    if k > n:
+        return 0
     result = 1
     if k > n - k:
         k = n - k
-    for i in range(0, k):
-        result *= n - i
-        result //= i + 1
+    i = 1
+    while i <= k:
+        result *= n
+        result //= i
+        n -= 1
+        i += 1
     return result
 
 
@@ -20,9 +25,9 @@ def pvalue(a: int, b: int,
 
 def FisherLeftSide(a: int, b: int,
                    c: int, d: int,
-                   baseP: Decimal) -> Decimal:
-    p = Decimal(0)
-    curP = baseP
+                   baseP: Decimal) -> float:
+    p = 0.0
+    curP = float(baseP)
     while(a > 0 and d > 0):
         curP *= a * d
         a -= 1
@@ -37,9 +42,9 @@ def FisherLeftSide(a: int, b: int,
 
 def FisherRightSide(a: int, b: int,
                     c: int, d: int,
-                    baseP: Decimal) -> Decimal:
-    p = Decimal(0)
-    curP = baseP
+                    baseP: Decimal) -> float:
+    p = float(0)
+    curP = float(baseP)
     while(b > 0 and c > 0):
         curP *= b * c
         a += 1
@@ -53,10 +58,23 @@ def FisherRightSide(a: int, b: int,
 
 
 def FisherExact(a: int, b: int,
-                c: int, d: int,
-                two_tailed: bool = True) -> Decimal:
+                c: int, d: int) -> Decimal:
+    """Calculate two-tailed Fisher's exact test for 2x2 continguency table
+
+    Args:
+        a: column 1 row 1
+        b: column 2 row 1
+        c: column 1 row 2
+        c: column 2 row 2
+
+    Returns:
+        Result of two-tailed Fisher's exact test stored in Decimal class
+    """
+    if a == b == c == d:
+        return Decimal(1)
     p = t = pvalue(a, b, c, d)
-    p += FisherLeftSide(a, b, c, d, t)
-    if two_tailed:
-        p += FisherRightSide(a, b, c, d, t)
+    leftTail = Decimal(FisherLeftSide(a, b, c, d, t))
+    p += leftTail
+    rightTail = Decimal(FisherRightSide(a, b, c, d, t))
+    p += rightTail
     return p

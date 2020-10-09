@@ -1,6 +1,6 @@
 # Fisher
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Ae-Mc/Fisher/Python%20package)
-![PyPI](https://img.shields.io/pypi/v/FisherExactTest?color=orange)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Ae-Mc/Fisher/Python%20package)](https://github.com/Ae-Mc/Fisher/actions?query=workflow:"Python+package")
+[![PyPI](https://img.shields.io/pypi/v/FisherExactTest?color=orange)](https://pypi.org/project/FisherExactTest/)
 
 Pure Python realization of Fisher's exact test
 

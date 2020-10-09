@@ -33,4 +33,4 @@ setuptools.setup(name=about["__title__"],
                  url=about["__url__"],
                  packages=setuptools.find_packages(),
                  classifiers=about["__classifiers__"],
-                 python_requires='>=3.5')
+                 python_requires='>=3.6')

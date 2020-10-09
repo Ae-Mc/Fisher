@@ -1,4 +1,6 @@
 # Fisher
+![PyPI](https://img.shields.io/pypi/v/FisherExactTest?color=orange)
+
 Pure Python realization of Fisher's exact test
 
 Usage example:
